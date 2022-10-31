@@ -84,10 +84,11 @@ summary (modelf)
 modelb = lm(abalone[,2]~ 1)
 summary(modelb)
 
+drop1(modeltvs,test="Chisq")
 step(modelb, scope = list(upper=modelf, lower=~1), direction="both", trace=10)
 
 modeltvs <- lm(abalone[,2] ~ abalone[,3] + abalone[,4]  +  abalone[,6] + abalone[,7] + abalone[,8])
-sumamry(modeltvs)
+summary(modeltvs)
 vif(modeltvs)
 
 # using intuition 
@@ -119,6 +120,7 @@ summary(modelfinal2)
 
 # let's try and fit poisson model
 pmodel1<-glm(abalone[,9] ~abalone[,1] + abalone[,2] + abalone[,3] + abalone[,4] + abalone[,5]+ abalone[,6]+ abalone[,7] + abalone[,8], family="poisson")
+summary(model1)
 
 # to test individual effects: 
 drop1(pmodel1, test="Chisq")
